@@ -11,8 +11,8 @@ android {
         applicationId = "fi.example.mieli.chrome"
         minSdk = 34
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.0.2"
     }
 
     compileOptions {
@@ -20,11 +20,13 @@ android {
         targetCompatibility = JavaVersion.VERSION_21
     }
 
+    val storeFilePath: String? = System.getenv("RELEASE_STORE_FILE")
+    val hasSigning = !storeFilePath.isNullOrBlank()
+
     signingConfigs {
-        create("release") {
-            val sf = System.getenv("RELEASE_STORE_FILE") ?: ""
-            if (sf.isNotBlank()) {
-                storeFile = file(sf)
+        if (hasSigning) {
+            create("release") {
+                storeFile = file(storeFilePath!!)
                 storePassword = System.getenv("RELEASE_STORE_PASSWORD")
                 keyAlias = System.getenv("RELEASE_KEY_ALIAS")
                 keyPassword = System.getenv("RELEASE_KEY_PASSWORD")
@@ -35,7 +37,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            signingConfig = signingConfigs.findByName("release")
+            if (hasSigning) signingConfig = signingConfigs.getByName("release")
         }
     }
 }
