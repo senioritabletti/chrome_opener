@@ -1,0 +1,14 @@
+# Protect workflows and release infra
+
+.github/workflows/\*\* @senioritabletti/admins
+
+# Protect Gradle build logic (can change signing/outputs)
+
+build.gradle.kts @senioritabletti/admins
+settings.gradle.kts @senioritabletti/admins
+gradle.properties @senioritabletti/admins
+app/build.gradle.kts @senioritabletti/admins
+
+# (Optional) Protect manifest and signing-related resources
+
+app/src/main/AndroidManifest.xml @senioritabletti/admins
