@@ -1,0 +1,34 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Package visibility (Android 11+) -->
+    <queries>
+        <!-- We only need to see Chrome so we can target it explicitly -->
+        <package android:name="com.android.chrome" />
+        <!-- (optional) Allow any browser that can VIEW https links
+             <intent>
+                 <action android:name="android.intent.action.VIEW" />
+                 <data android:scheme="https" />
+             </intent>
+        -->
+    </queries>
+
+    <application
+        android:label="Mieli (Chrome)"
+        android:icon="@mipmap/ic_launcher"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:allowBackup="false"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.NoDisplay">
+
+        <activity
+            android:name="com.example.chrome_opener.MainActivity"
+            android:exported="true"
+            android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+</manifest>
