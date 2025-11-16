@@ -3,6 +3,9 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
+val baseUrl: String = (project.findProperty("BASE_URL") as String?) ?: "https://mieli.fi"
+val appName: String = (project.findProperty("APP_NAME") as String?) ?: "Mieli (Chrome)"
+
 android {
     namespace = "fi.example.mieli.chrome"
     compileSdk = 36
@@ -52,7 +55,3 @@ dependencies {
 kotlin {
     jvmToolchain(21)
 }
-
-val baseUrl: String = project.findProperty("BASE_URL") as String? ?: "https://mieli.fi"
-
-val appName: String = project.findProperty("APP_NAME") as String? ?: "Mieli (Chrome)"
