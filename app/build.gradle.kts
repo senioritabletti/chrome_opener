@@ -45,6 +45,11 @@ android {
             if (hasSigning) signingConfig = signingConfigs.getByName("release")
         }
     }
+
+    buildFeatures {
+        // Required because we declare custom buildConfigField above.
+        buildConfig = true
+    }
 }
 
 dependencies {
