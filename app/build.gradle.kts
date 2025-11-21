@@ -25,8 +25,8 @@ android {
         applicationId = fullPackage
         minSdk = 34
         targetSdk = 36
-        versionCode = 3
-        versionName = "1.0.3"
+        versionCode = 4
+        versionName = "1.0.4"
         buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
         resValue("string", "app_name", appName)
     }
