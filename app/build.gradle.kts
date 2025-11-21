@@ -14,8 +14,11 @@ val domainSuffix = baseUrl
     .replace("-", "")
     .lowercase()
 
+val urlHash = baseUrl.hashCode().toLong().let { if (it < 0) -it else it }
+val uniqueSuffix = (urlHash % 100000).toString().padStart(5, '0')
+
 val basePackage = "fi.example.mieli.chrome"
-val fullPackage = "$basePackage.$domainSuffix"
+val fullPackage = "$basePackage.$domainSuffix$uniqueSuffix"
 
 android {
     namespace = "fi.example.mieli.chrome"
@@ -25,8 +28,8 @@ android {
         applicationId = fullPackage
         minSdk = 34
         targetSdk = 36
-        versionCode = 4
-        versionName = "1.0.4"
+        versionCode = 5
+        versionName = "1.0.5"
         buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
         resValue("string", "app_name", appName)
     }
